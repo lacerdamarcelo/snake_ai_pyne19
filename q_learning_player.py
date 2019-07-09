@@ -45,7 +45,6 @@ player = QLearningPlayer()
 env = Snake()
 while True:
     observables = env.reset()
-    observables, reward, done, info = env.step(random.randint(0, 3))
     state = player.infer_state(observables)
     terminal = False
     while terminal is False:
