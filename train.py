@@ -5,6 +5,7 @@ from q_learning_player import QLearningPlayer
 print('Training model...')
 player = QLearningPlayer()
 env = Snake()
+epoch = 0
 while True:
     observables = env.reset()
     state = player.infer_state(observables)
