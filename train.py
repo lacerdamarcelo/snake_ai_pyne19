@@ -4,9 +4,7 @@ from q_learning_player import QLearningPlayer
 
 print('Training model...')
 player = QLearningPlayer()
-player.load_model('q_table.pkl', 'states_list.pkl')
 env = Snake()
-epoch = 10000
 while True:
     observables = env.reset()
     state = player.infer_state(observables)
