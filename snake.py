@@ -4,7 +4,7 @@ import numpy as np
 from gym.spaces import discrete, box
 
 class Snake:
-	def __init__(self, init_len=3, use_middle_point=False, board_size=(15, 15)):
+	def __init__(self, init_len=3, use_middle_point=False, board_size=(8, 8)):
 		snake_initial_position = [random.randint(0, board_size[0]),
 								  random.randint(0, board_size[1])]
 		self.snake = [snake_initial_position]

@@ -1,7 +1,6 @@
+import pickle
 import random
-import time
 import numpy as np
-from snake import Snake
 
 
 class QLearningPlayer:
@@ -47,17 +46,15 @@ class QLearningPlayer:
                     (current_reward + self.gamma * next_max)
         self.q_table[current_state, current_action] = new_value
 
+    def save_model(self, q_table_path, states_list_path):
+        with open(q_table_path, 'wb') as f:
+            pickle.dump(self.q_table, f)
+        with open(states_list_path, 'wb') as f:
+            pickle.dump(self.states_list, f)
 
-player = QLearningPlayer()
-env = Snake()
-while True:
-    observables = env.reset()
-    state = player.infer_state(observables)
-    terminal = False
-    while terminal is False:
-        env.render()
-        action = player.choose_action(state)
-        observables, reward, terminal, info = env.step(action)
-        next_state = player.infer_state(observables)
-        player.update_q_table(state, action, reward, next_state)
-        state = next_state
+    def load_model(self, q_table_path, states_list_path):
+        with open(q_table_path, 'rb') as f:
+            self.q_table = pickle.load(f)
+        with open(states_list_path, 'rb') as f:
+            self.states_list = pickle.load(f)
+            self.states_set = set(self.states_list)
