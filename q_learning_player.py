@@ -1,7 +1,7 @@
-from snake import Snake
-import numpy as np
 import random
 import time
+import numpy as np
+from snake import Snake
 
 
 class QLearningPlayer:
@@ -26,6 +26,13 @@ class QLearningPlayer:
         else:
             return self.states_list.index(observables)
 
+    '''
+    Ações possíveis:
+    0 - cima;
+    1 - direita;
+    2 - baixo;
+    3 - esquerda.
+    '''
     def choose_action(self, state):
         if random.uniform(0, 1) < self.epsilon:
             action = random.randint(0, 3)
