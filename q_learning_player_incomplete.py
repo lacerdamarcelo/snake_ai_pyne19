@@ -7,18 +7,20 @@ from snake import Snake
 
 class QLearningPlayer:
        
-    def __init__(self, alpha=0.1, gamma=0.6, epsilon=0.1): 
-        self.states_set = set([])
-        self.states_list = []
-        self.q_table = np.zeros([1, 4])
-
-        # Hyperparameters
+    def __init__(self, alpha=0.1, gamma=0.6, epsilon=0.1):
+        # Hiperparâmetros
         self.alpha = alpha
         self.gamma = gamma
         self.epsilon = epsilon
 
+        # Inicializando matriz Q e conjunto/lista de estados.
+        self.states_set = set([])
+        self.states_list = []
+        self.q_table = np.zeros([1, 4])
+
     def infer_state(self, observables_list):
         '''
+        Observáveis: [x_maçã - x_cabeça, y_maçã - y_cabeça, x_ponta_calda - x_cabeça, y_ponta_calda - y_cabeça]
         Esta função deve verificar se os observáveis representam ou não um novo estado.
         Cada estado é representado por uma das possíveis combinações de valores das variáveis
         que compõem os observáveis, sendo estes mapeados em um número inteiro (0, 1, 2, 3...).
@@ -47,8 +49,8 @@ class QLearningPlayer:
     def update_q_table(self, current_state, current_action, current_reward, next_state):
         '''
         Os valores Q devem ser atualizados. Deve-se identificar a ação a(t+1) que maximiza Q(S(t+1),a(t+1)),
-        sendo S(t+1) o próximo estado (next_state) após a ação tomada "current_action". Depois disso,
-        o novo valor de Q(S,a) deve ser calculado, atualizando a matriz.
+        sendo S(t+1) o próximo estado (next_state). Depois disso, o novo valor de Q(S,a) deve ser calculado,
+        atualizando a matriz.
         '''
         pass
 

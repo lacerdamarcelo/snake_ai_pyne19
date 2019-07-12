@@ -6,14 +6,15 @@ import numpy as np
 class QLearningPlayer:
        
     def __init__(self, alpha=0.1, gamma=0.6, epsilon=0.1): 
-        self.states_set = set([])
-        self.states_list = []
-        self.q_table = np.zeros([1, 4])
-
-        # Hyperparameters
+        # Hiperparâmetros
         self.alpha = alpha
         self.gamma = gamma
         self.epsilon = epsilon
+
+        # Inicializando matriz Q e conjunto/lista de estados.
+        self.states_set = set([])
+        self.states_list = []
+        self.q_table = np.zeros([1, 4])
 
     def infer_state(self, observables_list):
         observables = str(observables_list)
