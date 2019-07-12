@@ -8,5 +8,6 @@ while True:
 	terminal = False
 	while terminal is False:
 		env.render()
-		observables, reward, terminal, info = env.step(random.randint(0, env.actions_set_size-1))
+		action = random.randint(0, env.actions_set_size-1)
+		observables, reward, terminal, info = env.step(action)
 		time.sleep(0.1)
