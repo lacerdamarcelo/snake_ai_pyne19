@@ -11,20 +11,23 @@ class QLearningPlayer:
         self.gamma = gamma
         self.epsilon = epsilon
 
-        # Inicializando matriz Q e conjunto/lista de estados.
-        self.states_set = set([])
+        # Inicializando matriz Q e lista de estados.
         self.states_list = []
-        self.q_table = np.zeros([1, 4])
+        self.q_table = None
 
     def infer_state(self, observables_list):
         observables = str(observables_list)
-        if observables not in self.states_set:
-            self.states_set.add(observables)
-            self.states_list.append(observables)
-            self.q_table = np.append(self.q_table, [np.zeros(4)], axis=0)
-            return len(self.states_list) - 1
+        if self.q_table is not None:
+            if observables not in self.states_list:
+                self.states_list.append(observables)
+                self.q_table = np.append(self.q_table, [np.zeros(4)], axis=0)
+                return len(self.states_list) - 1
+            else:
+                return self.states_list.index(observables)
         else:
-            return self.states_list.index(observables)
+            self.states_list = [observables]
+            self.q_table = np.zeros([1, 4])
+            return 0
 
     '''
     Ações possíveis:
@@ -58,4 +61,3 @@ class QLearningPlayer:
             self.q_table = pickle.load(f)
         with open(states_list_path, 'rb') as f:
             self.states_list = pickle.load(f)
-            self.states_set = set(self.states_list)

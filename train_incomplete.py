@@ -20,4 +20,4 @@ while True:
     if epoch % 100 == 0:
         print('Saving checkpoint at epoch: %d' % epoch)
         print('Hi Score: %d' % env.max_score)
-        # Salvar modelo (pickle)
+        player.save_model('q_table.pkl', 'states_list.pkl')
